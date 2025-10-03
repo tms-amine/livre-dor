@@ -1,0 +1,411 @@
+
+:root {
+    --brand: #3b82f6;
+    /* bleu */
+    --brand-600: #2563eb;
+    --brand-700: #1d4ed8;
+    --accent: #10b981;
+    /* vert */
+
+    --bg: #f7f8fb;
+    --surface: #ffffff;
+    --text: #0f172a;
+    --muted: #64748b;
+    --border: #e5e7eb;
+    --ring: 59 130 246;
+    /* rgb tokens pour focus ring */
+    --shadow: 0 1px 2px rgba(0, 0, 0, .06), 0 6px 20px rgba(0, 0, 0, .07);
+
+    --radius-sm: .5rem;
+    --radius: .9rem;
+    --radius-lg: 1.2rem;
+
+    --container: 1100px;
+    --leading: 1.6;
+
+    --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans";
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0b1020;
+        --surface: #121a33;
+        --text: #e6ebf6;
+        --muted: #aab8d6;
+        --border: #223058;
+        --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 28px rgba(0, 0, 0, .35);
+    }
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-sans);
+    line-height: var(--leading);
+    color: var(--text);
+    background: linear-gradient(180deg, var(--bg), color-mix(in oklab, var(--bg) 60%, transparent));
+    -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+}
+
+/* =========================
+   Layout & Typographie
+   ========================= */
+.container,
+.container01 {
+    width: min(100% - 2rem, var(--container));
+    margin-inline: auto;
+}
+
+main.container,
+main.container01 {
+    padding-block: clamp(1.2rem, 3vw, 2rem);
+}
+
+h1,
+h2,
+h3 {
+    margin: 0 0 .6rem;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+}
+
+h1 {
+    font-size: clamp(1.8rem, 3.6vw, 2.4rem);
+    font-weight: 800;
+}
+
+h2 {
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    font-weight: 700;
+}
+
+h3 {
+    font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+    font-weight: 700;
+}
+
+p {
+    margin: .4rem 0 1rem;
+    color: var(--muted);
+}
+
+a {
+    color: var(--brand-600);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   Header & Navigation
+   ========================= */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(255, 255, 255, .8);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+}
+
+@media (prefers-color-scheme: dark) {
+    header {
+        background: rgba(18, 26, 51, .7);
+    }
+}
+
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: .8rem;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    flex-wrap: wrap;
+}
+
+nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .5rem .8rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    transition: background .2s ease, border-color .2s ease, transform .06s ease;
+    color: var(--text);
+}
+
+nav a:hover {
+    background: color-mix(in oklab, var(--surface) 88%, transparent);
+    transform: translateY(-1px);
+}
+
+nav a:active {
+    transform: translateY(0);
+}
+
+/* =========================
+   Cards / Surfaces
+   ========================= */
+.card,
+.form-container,
+.table-container {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: clamp(1rem, 2.2vw, 1.4rem);
+}
+
+.form-container>h2 {
+    margin-top: 0;
+}
+
+/* =========================
+   Boutons
+   ========================= */
+.btn {
+    --bg: var(--brand);
+    --bg-h: var(--brand-600);
+    --tx: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    padding: .6rem 1rem;
+    font-weight: 700;
+    background: var(--bg);
+    color: var(--tx);
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: transform .06s ease, background .2s ease, box-shadow .2s ease;
+}
+
+.btn:hover {
+    background: var(--bg-h);
+    transform: translateY(-1px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+.btn--ghost {
+    --bg: transparent;
+    --tx: var(--brand-700);
+    border-color: var(--border);
+    box-shadow: none;
+}
+
+.btn--success {
+    --bg: var(--accent);
+    --bg-h: #059669;
+}
+
+/* =========================
+   Formulaires
+   ========================= */
+.form-group {
+    display: grid;
+    gap: .4rem;
+    margin-bottom: .9rem;
+}
+
+label {
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select,
+textarea {
+    width: 100%;
+    padding: .65rem .8rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    outline: none;
+    box-shadow: inset 0 1px 0 rgba(0, 0, 0, .02);
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: rgb(var(--ring));
+    box-shadow: 0 0 0 4px rgba(var(--ring), .18);
+}
+
+.error-message {
+    border: 1px solid #ef4444;
+    background: color-mix(in oklab, #ef4444 10%, var(--surface));
+    color: #b91c1c;
+    padding: .8rem 1rem;
+    border-radius: var(--radius-sm);
+    margin-bottom: 1rem;
+}
+
+/* =========================
+   Tableaux (responsive)
+   ========================= */
+.table-container {
+    overflow: auto;
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 560px;
+    /* scroll horizontal sur mobile si besoin */
+}
+
+.table-container thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: color-mix(in oklab, var(--surface) 92%, transparent);
+    backdrop-filter: blur(2px);
+}
+
+.table-container th,
+.table-container td {
+    padding: .85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.table-container thead th {
+    font-weight: 700;
+    color: var(--muted);
+}
+
+.table-container tbody tr:hover {
+    background: color-mix(in oklab, var(--surface) 92%, transparent);
+}
+
+/* =========================
+   Utilitaires
+   ========================= */
+.mt-1 {
+    margin-top: .25rem
+}
+
+.mt-2 {
+    margin-top: .5rem
+}
+
+.mt-3 {
+    margin-top: .75rem
+}
+
+.mt-4 {
+    margin-top: 1rem
+}
+
+.mb-1 {
+    margin-bottom: .25rem
+}
+
+.mb-2 {
+    margin-bottom: .5rem
+}
+
+.mb-3 {
+    margin-bottom: .75rem
+}
+
+.mb-4 {
+    margin-bottom: 1rem
+}
+
+.text-muted {
+    color: var(--muted)
+}
+
+.center {
+    display: grid;
+    place-items: center;
+}
+
+/* =========================
+   Accessibilité
+   ========================= */
+:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(var(--ring), .25);
+    border-radius: .4rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
+
+/* =========================
+   Helpers pour pages spécifiques
+   ========================= */
+/* Accueil */
+main.container01>section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: clamp(1rem, 2.5vw, 1.6rem);
+}
+
+/* Profil — limiter la largeur du formulaire */
+.profile main.container,
+.form-container {
+    max-width: 720px;
+}
+
+/* Fin du fichier */
